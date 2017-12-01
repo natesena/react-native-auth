@@ -12,11 +12,15 @@ var _index2 = _interopRequireDefault(_index);
 
 var _jsxFileName = '/Users/NathanielSena/personal_projects/react-native-authentication/client/App.js';
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _reactNative = require('react-native');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -66,31 +70,57 @@ var App = _wrapComponent('App')(function (_React$Component) {
   }
 
   _createClass(App, [{
+    key: 'submit',
+    value: function submit() {
+      console.log('tried to submit ', 'fields', this.state.fields);
+    }
+  }, {
+    key: 'textInputted',
+    value: function textInputted(value, field) {
+      this.setState({
+        fields: _extends({}, this.state.fields, _defineProperty({}, field, value))
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       return _react3.default.createElement(
         _reactNative.View,
         { style: styles.container, __source: {
             fileName: _jsxFileName,
-            lineNumber: 13
+            lineNumber: 24
           }
         },
-        _react3.default.createElement(_reactNative.TextInput, { name: 'username', placeholder: 'username', __source: {
-            fileName: _jsxFileName,
-            lineNumber: 14
-          }
-        }),
-        _react3.default.createElement(_reactNative.TextInput, { name: 'password', placeholder: 'password', secureTextEntry: true, __source: {
-            fileName: _jsxFileName,
-            lineNumber: 15
-          }
-        }),
         _react3.default.createElement(
-          _reactNative.TouchableOpacity,
+          _reactNative.View,
           {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 16
+              lineNumber: 25
+            }
+          },
+          _react3.default.createElement(_reactNative.TextInput, { onChangeText: function onChangeText(evt) {
+              return _this2.textInputted(evt, 'username');
+            }, value: this.state.fields.username, name: 'username', placeholder: 'what', __source: {
+              fileName: _jsxFileName,
+              lineNumber: 26
+            }
+          }),
+          _react3.default.createElement(_reactNative.TextInput, { onChangeText: function onChangeText(evt) {
+              return _this2.textInputted(evt, 'password');
+            }, value: this.state.fields.password, name: 'password', placeholder: 'password', secureTextEntry: true, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 27
+            }
+          })
+        ),
+        _react3.default.createElement(
+          _reactNative.TouchableOpacity,
+          { onPress: this.submit(), __source: {
+              fileName: _jsxFileName,
+              lineNumber: 29
             }
           },
           _react3.default.createElement(
@@ -98,7 +128,7 @@ var App = _wrapComponent('App')(function (_React$Component) {
             {
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 17
+                lineNumber: 30
               }
             },
             'Submit'
@@ -116,11 +146,11 @@ exports.default = App;
 
 var styles = _reactNative.StyleSheet.create({
   container: {
-    flex: 2,
+    flex: 1,
     backgroundColor: '#fff',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'blue'
+    backgroundColor: '#00f'
   }
 });

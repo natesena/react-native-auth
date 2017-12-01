@@ -8,12 +8,25 @@ export default class App extends React.Component {
       password: ''
     }
   }
+  submit(){
+    console.log('tried to submit ', 'fields', this.state.fields )
+  }
+  textInputted(value, field){
+   this.setState({
+     fields:{
+       ...this.state.fields,
+       [field]: value
+     }
+   })
+  }
   render() {
     return (
       <View style={styles.container}>
-          <TextInput name={'username'} placeholder={'username'}></TextInput>
-          <TextInput name={'password'} placeholder={'password'} secureTextEntry={true}></TextInput>
-          <TouchableOpacity>
+          <View>
+            <TextInput onChangeText={(evt) => this.textInputted(evt, 'username')} value={this.state.fields.username} name='username' placeholder={'what'}></TextInput>
+            <TextInput onChangeText={(evt) => this.textInputted(evt, 'password')} value={this.state.fields.password} name='password' placeholder={'password'} secureTextEntry={true}></TextInput>
+          </View>
+          <TouchableOpacity onPress={this.submit()}>
             <Text>Submit</Text>
           </TouchableOpacity>
       </View>
@@ -23,7 +36,7 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 2,
+    flex: 1,
     backgroundColor: '#fff',
     flexDirection: 'column',
     alignItems: 'center',
