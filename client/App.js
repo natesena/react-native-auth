@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import clientAuth from '../js/clientAuth.js'
 
 export default class App extends React.Component {
   state = {
